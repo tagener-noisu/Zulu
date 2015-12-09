@@ -134,18 +134,18 @@ var Zulu = {
 				match(/(\d+) (\w+) (\d+) \(\w+\) (\d+):(\d+)/);
 			var old_date = date.shift();
 
-			var date_dict = { "January": "Января",
-				"February": "Февраля",
-				"March": "Марта",
-				"April": "Апреля",
-				"May": "Мая",
-				"June": "Июня",
-				"July": "Июля",
-				"August": "Августа",
-				"September": "Сентября",
-				"October": "Октября",
-				"November": "Ноября",
-				"December": "Декабря"
+			var date_dict = { "January": "Январь",
+				"February": "Февраль",
+				"March": "Март",
+				"April": "Апрель",
+				"May": "Май",
+				"June": "Июнь",
+				"July": "Июль",
+				"August": "Август",
+				"September": "Сентябрь",
+				"October": "Октябрь",
+				"November": "Ноябрь",
+				"December": "Декабрь"
 			}
 			date[1] = date_dict[date[1]];
 
@@ -154,9 +154,7 @@ var Zulu = {
 				hours -= 24;
 
 			date[3] = hours + ':' + date[4];
-			date.pop();
-
-			var new_date = date.join(" ");
+			var new_date = date[0] + "/" + date[1] + "/" + date[2] + " " + date[3];
 
 			label.innerHTML = label.innerHTML.replace(old_date,
 					'<label class="post-date">'+new_date+'</label>');
