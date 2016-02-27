@@ -138,7 +138,7 @@ var Zulu = {
 
 			this.dom.ctrl_btn = document.createElement('div');
 			this.dom.ctrl_btn.innerHTML = '<svg width="50" height="50">\
-				<circle cx="25" cy="25" r="24" style="fill:white;stroke:black;stroke-width:1;"/>\
+				<circle cx="25" cy="25" r="24" style="fill:white;stroke:#CCC;stroke-width:1;"/>\
 				<rect height="2" width="20" x="15" y="24" style="fill:black;"/>\
 				<rect height="20" width="2" x="24" y="15" style="fill:black;"/></svg>';
 			this.dom.ctrl_btn.id = 'gallery-ctrl-btn';
