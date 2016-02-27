@@ -3,7 +3,7 @@
 // @namespace   dot.noisu
 // @include     http://dobrochan.com/*
 // @include     http://dobrochan.ru/*
-// @version     2.0.0
+// @version     2.0.1
 // @grant       none
 // ==/UserScript==
 
@@ -137,7 +137,11 @@ var Zulu = {
 				</div><div id="gallery-footer"></div>';
 
 			this.dom.ctrl_btn = document.createElement('div');
-			this.dom.ctrl_btn.id = "gallery-ctrl-btn";
+			this.dom.ctrl_btn.innerHTML = '<svg width="50" height="50">\
+				<circle cx="25" cy="25" r="24" style="fill:white;stroke:black;stroke-width:1;"/>\
+				<rect height="2" width="20" x="15" y="24" style="fill:black;"/>\
+				<rect height="20" width="2" x="24" y="15" style="fill:black;"/></svg>';
+			this.dom.ctrl_btn.id = 'gallery-ctrl-btn';
 
 			document.body.appendChild(this.dom.wrapper);
 			document.body.appendChild(this.dom.ctrl_btn);
@@ -155,7 +159,7 @@ var Zulu = {
 				this.createGallery();
 				this.is_created = true;
 
-				window.addEventListener('keydown', function(e) {
+				document.addEventListener('keydown', function(e) {
 					var used_keys = [37, 39];
 
 					if (!Zulu.gallery.is_visible || used_keys.indexOf(e.keyCode) === -1)
@@ -190,7 +194,6 @@ var Zulu = {
 		},
 
 		createGallery: function() {
-			u
 			var thumbs = document.getElementsByClassName('thumb');
 
 			var len = thumbs.length;
@@ -300,29 +303,15 @@ var Zulu = {
 			#gallery-ctrl-btn { \
 				transition: 300ms; \
 				position: fixed; \
+				display: inline-block; \
 				z-index: 101; \
-				height: 64px; \
-				width: 64px; \
+				width: 50px; \
+				height: 50px; \
 				top: 40px; \
 				right: 40px; \
-				background: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABA\
-					CAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3\
-					RJTUUH3wgNBSwk7l/a0gAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBk\
-					LmUHAAACSklEQVR42u2bsUoDQRCG/zGdaHOBVAGtAoJFKskLKIi1jyBo41tYCdZWeYHUQY\
-					gvEKxSSIRUEdIo5BrFSv1tVggSk90zd97O7l/v7d18O7s3szsLREVFRQUsKeIlJPcAtAA0\
-					ATQA1AFUAaybJm8ApgAmAEYABgD6InLnLVmShyTbJJ+YXU+mj0OfDD8nOeTqNSR5XmbDT0\
-					iOmb/GJE/KZPguyR6LV4/kbhlG/Z3/p/d/8waSlyyPLos2vs3yqR2y8cVAKJnbFzsdzILn\
-					i6wXRrH91ZnwtOJJPPYBoCki98sarll2eOWR8TDfemXTcM3G9QHse5iO7NtMBbEAMAaw5W\
-					lO9igi25k9wCQfuRmfJAmSJMkTwNayBGrZFDhVsOdxmgmAycF3FADYWbSfsMgDjhXtfB1n\
-					AXCkCMCREwCzh1dTBKBmbLL2gJbCDeCWC4CmQgBNFwANhQAaLgDqCgHUXQBUFQKoWucCJD\
-					8cMsW5IW5eStM066OfIlLJmg6r1W8e8AJgI++Xf3vKH0bVRa8ismnrAVOFgz11WQQnCgFM\
-					XACMFAIYuQAYKAQwcAHQVwigbw3AVGY8KzL++bdqk0VxQFcRgK7TfoBRRxGAjjMAEbkB8K\
-					DA+Adji7MHAMB1nl+WpmkRUeC1cyj8IyweI9SDEaMLj91/6bfbng734N/54K2IHKwKQNjH\
-					46ajM49G/8zGeGcFXSIzAyHcIqmSQ2gXOsmCLpScgRBuqezsLzLYYuk53hBeufwcEGFemJ\
-					gDwosrM/HSVFRUVFTI+gI6IznSGHRk1gAAAABJRU5ErkJggg==\'); \
 			} \
 			#gallery-ctrl-btn.loading { \
-				animation: loading 400ms infinite linear; \
+				animation: loading 300ms infinite linear; \
 			} \
 			@keyframes loading { \
 				from {transform: rotate(0deg);} \
