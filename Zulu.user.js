@@ -119,6 +119,7 @@ var Zulu = {
 
 	gallery: {
 		pics: [],
+		pic_types: [],
 		current_index: 0,
 		is_visible: false,
 		is_created: false,
@@ -203,7 +204,6 @@ var Zulu = {
 			if (this.pics.length != 0)
 				this.makeMeSuffer(0);
 		},
-
 		makeMeSuffer: function(id) {
 			if (id < 0 || id >= this.pics.length)
 				id = 0
@@ -244,13 +244,22 @@ var Zulu = {
 
 			if (!preview_src || !main_src) return 1;
 
-			if (this.pics.indexOf(main_src) != -1) return;
+			if (this.pics.indexOf(main_src) != -1) return 2;
 
 			var new_icon = document.createElement('a');
 			new_icon.className = "gallery-preview";
 			new_icon.id = this.pics.length;
 			new_icon.style.backgroundImage = 'url("' + preview_src + '")';
 			new_icon.href = main_src;
+
+			var ext = main_src.match(/\w+$/)[0];
+			var special_type = ["webm", "gif"].indexOf(ext);
+			if (special_type != -1) {
+				var type_lable = document.createElement('div');
+				type_lable.className = 'type-preview';
+				type_lable.innerHTML = ["webm", "gif"][special_type];
+				new_icon.appendChild(type_lable);
+			}
 
 			new_icon.addEventListener('click', function(e) {
 				var a = parseInt(this.id);
@@ -279,26 +288,41 @@ var Zulu = {
 				margin: auto; \
 			} \
 			#gallery-main { \
+				position: absolute; \
+				top: 0; \
+				bottom: 200px; \
 				width: 100%; \
-				height: 80%; \
 				background-color: #000; \
 				background-size: contain; \
 				background-repeat: no-repeat; \
 				background-position: center; \
 			} \
 			#gallery-footer { \
-				height: 20%; \
+				position: absolute; \
+				bottom: 0; \
+				height: 200px; \
 				width: 100%; \
 				overflow-x: auto; \
 				overflow-y: hidden; \
 				white-space: nowrap; \
 			} \
 			.gallery-preview { \
-				height: 100%; \
+				height: 200px; \
 				width: 200px; \
 				background-size: cover; \
 				background-position: center; \
 				display: inline-block; \
+			} \
+			.type-preview { \
+				position: absolute; \
+				cursor: normal; \
+				width: 200px; \
+				height: 2000px; \
+				font-size: 2em; \
+				color: #FFF; \
+				text-shadow: 0 0 2px #000; \
+				line-height: 150px; \
+				text-align: center; \
 			} \
 			#gallery-ctrl-btn { \
 				transition: 300ms; \
