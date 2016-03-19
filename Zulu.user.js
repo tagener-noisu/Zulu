@@ -255,10 +255,10 @@ var Zulu = {
 			var ext = main_src.match(/\w+$/)[0];
 			var special_type = ["webm", "gif"].indexOf(ext);
 			if (special_type != -1) {
-				var type_lable = document.createElement('div');
-				type_lable.className = 'type-preview';
-				type_lable.innerHTML = ["webm", "gif"][special_type];
-				new_icon.appendChild(type_lable);
+				var type_label = document.createElement('div');
+				type_label.className = 'type-preview';
+				type_label.innerHTML = ["webm", "gif"][special_type];
+				new_icon.appendChild(type_label);
 			}
 
 			new_icon.addEventListener('click', function(e) {
